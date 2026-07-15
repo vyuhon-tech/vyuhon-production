@@ -29,7 +29,7 @@ export default function InsightsPage() {
 
       <section className="sec">
         <div className="container">
-          <Link href={`/insights/${featured.slug}`} className="card reveal" style={{ display: 'block', padding: 48, marginBottom: 24 }}>
+          <Link href={`/insights/${featured.slug}`} className="card reveal featured-insight-card">
             <div className="insight-meta">
               <span className="cat">Featured · {featured.cat}</span>
               <span>·</span>

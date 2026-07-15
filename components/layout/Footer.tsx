@@ -97,7 +97,7 @@ export default function Footer() {
         </div>
         <div className="footer-base">
           <span>© {new Date().getFullYear()} Vyuhon. All rights reserved.</span>
-          <span>· hello@vyuhon.com ·</span>
+          <span>hello@vyuhon.com</span>
         </div>
       </div>
     </footer>

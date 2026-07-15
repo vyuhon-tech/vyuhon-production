@@ -53,7 +53,7 @@ export default async function InsightDetailPage({ params }: Props) {
         <div className="container">
           <div className="article" dangerouslySetInnerHTML={{ __html: body }} />
 
-          <div className="article" style={{ marginTop: 52, paddingTop: 32, borderTop: '1px solid var(--line)', display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: 14 }}>
+          <div className="article article-actions" style={{ marginTop: 52, paddingTop: 32, borderTop: '1px solid var(--line)' }}>
             <Link href="/insights" className="btn btn-ghost btn-sm">← Back to insights</Link>
             <Link href="/contact" className="btn btn-ink btn-sm">Talk to Vyuhon</Link>
           </div>

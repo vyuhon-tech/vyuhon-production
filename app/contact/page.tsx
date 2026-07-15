@@ -67,12 +67,12 @@ export default function ContactPage() {
             ))}
           </div>
 
-          <div className="reveal" style={{ display: 'flex', justifyContent: 'space-between', gap: 18, flexWrap: 'wrap', marginTop: 32, padding: '22px 28px', border: '1px solid var(--line)', borderRadius: 'var(--r-lg)', background: 'var(--paper-2)' }}>
+          <div className="reveal contact-info-banner">
             <div>
               <div style={{ fontWeight: 600, fontSize: '0.95rem' }}>Bengaluru, India</div>
               <div className="body-sm">Headquartered · Remote-first globally</div>
             </div>
-            <div style={{ textAlign: 'right' }}>
+            <div>
               <div style={{ fontWeight: 600, fontSize: '0.95rem' }}>Responds within 24h</div>
               <div className="body-sm">hello@vyuhon.com</div>
             </div>

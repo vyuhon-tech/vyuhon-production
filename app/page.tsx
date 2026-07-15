@@ -48,11 +48,7 @@ export default function Home() {
   useEffect(() => {
     let killed = false;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    let st: any;
-
-    const small = window.matchMedia('(max-width: 820px)').matches;
-    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (small || reduced) return; // tabs remain click-driven
+    let mmCtx: any;
 
     (async () => {
       const { gsap } = await import('gsap');
@@ -60,34 +56,49 @@ export default function Home() {
       gsap.registerPlugin(ScrollTrigger);
       if (killed || !pinRef.current) return;
 
-      st = ScrollTrigger.create({
-        trigger: pinRef.current,
-        // React-owned spacer: prevents GSAP from re-parenting the section,
-        // which corrupts React's DOM and crashes route navigation.
-        pinSpacer: spacerRef.current!,
-        start: 'top 72px', // below fixed navbar
-        end: () => `+=${(N - 1) * TAB_SCROLL_STEP}`,
-        pin: true,
-        anticipatePin: 1,
-        snap: {
-          snapTo: 1 / (N - 1),
-          duration: { min: 0.25, max: 0.6 },
-          delay: 0.05,
-          ease: 'power2.out',
-        },
-        onUpdate: self => {
-          if (suppressRef.current) return; // direct click in progress
-          const idx = Math.min(N - 1, Math.round(self.progress * (N - 1)));
-          setTab(t => (t === idx ? t : idx));
-        },
+      mmCtx = gsap.matchMedia();
+
+      mmCtx.add('(min-width: 821px)', () => {
+        const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (reduced) return;
+
+        const st = ScrollTrigger.create({
+          trigger: pinRef.current!,
+          // React-owned spacer: prevents GSAP from re-parenting the section,
+          // which corrupts React's DOM and crashes route navigation.
+          pinSpacer: spacerRef.current!,
+          start: 'top 72px', // below fixed navbar
+          end: () => `+=${(N - 1) * TAB_SCROLL_STEP}`,
+          pin: true,
+          anticipatePin: 1,
+          snap: {
+            snapTo: 1 / (N - 1),
+            duration: { min: 0.25, max: 0.6 },
+            delay: 0.05,
+            ease: 'power2.out',
+          },
+          onUpdate: self => {
+            if (suppressRef.current) return; // direct click in progress
+            const idx = Math.min(N - 1, Math.round(self.progress * (N - 1)));
+            setTab(t => (t === idx ? t : idx));
+          },
+        });
+
+        stRef.current = st;
+
+        return () => {
+          stRef.current = null;
+        };
       });
-      stRef.current = st;
+
       ScrollTrigger.refresh();
     })();
 
     return () => {
       killed = true;
-      st?.kill();
+      if (mmCtx) {
+        mmCtx.revert();
+      }
       stRef.current = null;
     };
   }, [N]);
