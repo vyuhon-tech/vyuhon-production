@@ -3,8 +3,20 @@ import Link from 'next/link';
 import CTABanner from '@/components/ui/CTABanner';
 
 export const metadata: Metadata = {
-  title: 'Careers at Vyuhon | Build the AI-Native Enterprise',
+  title: 'Careers | Vyuhon',
   description: "We're looking for consultants, engineers, designers, and AI practitioners who believe in transformation through technology.",
+  alternates: {
+    canonical: 'https://vyuhon.com/careers',
+  },
+  openGraph: {
+    title: 'Careers | Vyuhon',
+    description: "We're looking for consultants, engineers, designers, and AI practitioners who believe in transformation through technology.",
+    url: 'https://vyuhon.com/careers',
+  },
+  twitter: {
+    title: 'Careers | Vyuhon',
+    description: "We're looking for consultants, engineers, designers, and AI practitioners who believe in transformation through technology.",
+  },
 };
 
 const PERKS = [

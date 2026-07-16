@@ -1,8 +1,22 @@
 import type { Metadata } from 'next';
 
+import JsonLd from '@/components/seo/JsonLd';
+
 export const metadata: Metadata = {
-  title: 'Contact Vyuhon | Start Your Transformation',
+  title: 'Contact | Vyuhon',
   description: "Whether you're exploring your first AI initiative or planning a full business transformation — let's start with a conversation.",
+  alternates: {
+    canonical: 'https://vyuhon.com/contact',
+  },
+  openGraph: {
+    title: 'Contact | Vyuhon',
+    description: "Whether you're exploring your first AI initiative or planning a full business transformation — let's start with a conversation.",
+    url: 'https://vyuhon.com/contact',
+  },
+  twitter: {
+    title: 'Contact | Vyuhon',
+    description: "Whether you're exploring your first AI initiative or planning a full business transformation — let's start with a conversation.",
+  },
 };
 
 const CONTACT_PATHS = [
@@ -30,6 +44,29 @@ const CONTACT_PATHS = [
 export default function ContactPage() {
   return (
     <>
+      <JsonLd data={{
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "ContactPage",
+            "@id": "https://vyuhon.com/contact/#webpage",
+            "url": "https://vyuhon.com/contact",
+            "name": "Contact Vyuhon"
+          },
+          {
+            "@type": "ProfessionalService",
+            "@id": "https://vyuhon.com/#organization",
+            "name": "Vyuhon",
+            "email": "hello@vyuhon.com",
+            "url": "https://vyuhon.com",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Bengaluru",
+              "addressCountry": "IN"
+            }
+          }
+        ]
+      }} />
       <section className="page-hero">
         <div className="hero-wash" aria-hidden="true"></div>
         <div className="container page-hero-inner">

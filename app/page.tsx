@@ -1,5 +1,8 @@
 'use client';
+import type { Metadata } from 'next';
 import { useState, useEffect, useRef, useCallback } from 'react';
+
+
 import Link from 'next/link';
 import { SERVICES, JOURNEY_STEPS } from '@/data/services';
 import { INSIGHTS } from '@/data/insights';
@@ -171,6 +174,20 @@ export default function Home() {
               ))}
             </div>
 
+            {/* SEO: Visually hidden list of all services for crawlers */}
+            <div className="sr-only">
+              <h2>All Service Disciplines</h2>
+              <ul>
+                {SERVICES.map(s => (
+                  <li key={s.num}>
+                    <h3>{s.title}</h3>
+                    <p>{s.desc}</p>
+                    <a href="/services">See all services in {s.title}</a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
             <div className="tab-panel reveal" role="tabpanel">
               <div key={svc.num} className="tab-content-anim">
                 <div className="eyebrow plain" style={{ marginBottom: 16 }}>Discipline {svc.num} — of 07</div>
@@ -264,7 +281,7 @@ export default function Home() {
           </div>
           <div className="grid-3">
             {INSIGHTS.slice(0, 3).map(ins => (
-              <Link key={ins.slug} href={`/insights/${ins.slug}`} className="insight-card reveal">
+              <Link key={ins.slug} href={`/insights/${ins.slug}`} className="insight-card reveal" aria-label={`Read insight: ${ins.title}`}>
                 <div className="insight-meta">
                   <span className="cat">{ins.cat}</span>
                   <span>·</span>

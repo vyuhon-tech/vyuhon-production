@@ -3,14 +3,58 @@ import Link from 'next/link';
 import { SERVICES, JOURNEY_STEPS } from '@/data/services';
 import CTABanner from '@/components/ui/CTABanner';
 
+import JsonLd from '@/components/seo/JsonLd';
+
 export const metadata: Metadata = {
-  title: 'Services | Vyuhon',
+  title: 'AI Consulting & Product Engineering Services | Vyuhon',
   description: 'Seven disciplines under one roof — strategy, product, design, AI & data, engineering, enterprise implementation, and managed services.',
+  alternates: {
+    canonical: 'https://vyuhon.com/services',
+  },
+  openGraph: {
+    title: 'AI Consulting & Product Engineering Services | Vyuhon',
+    description: 'Seven disciplines under one roof — strategy, product, design, AI & data, engineering, enterprise implementation, and managed services.',
+    url: 'https://vyuhon.com/services',
+  },
+  twitter: {
+    title: 'AI Consulting & Product Engineering Services | Vyuhon',
+    description: 'Seven disciplines under one roof — strategy, product, design, AI & data, engineering, enterprise implementation, and managed services.',
+  },
 };
 
 export default function ServicesPage() {
   return (
     <>
+      <JsonLd data={{
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://vyuhon.com/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Services",
+                "item": "https://vyuhon.com/services"
+              }
+            ]
+          },
+          ...SERVICES.map((s) => ({
+            "@type": "Service",
+            "name": s.title,
+            "description": s.desc,
+            "provider": {
+              "@id": "https://vyuhon.com/#organization"
+            }
+          }))
+        ]
+      }} />
       <section className="page-hero">
         <div className="hero-wash" aria-hidden="true"></div>
         <div className="container page-hero-inner">

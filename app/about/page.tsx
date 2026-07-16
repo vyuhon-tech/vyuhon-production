@@ -2,9 +2,23 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import CTABanner from '@/components/ui/CTABanner';
 
+import JsonLd from '@/components/seo/JsonLd';
+
 export const metadata: Metadata = {
   title: 'About Vyuhon | AI-First Business Transformation Partner',
   description: 'Vyuhon was founded on the belief that strategy without execution creates no impact, and software without adoption creates no value.',
+  alternates: {
+    canonical: 'https://vyuhon.com/about',
+  },
+  openGraph: {
+    title: 'About Vyuhon | AI-First Business Transformation Partner',
+    description: 'Vyuhon was founded on the belief that strategy without execution creates no impact, and software without adoption creates no value.',
+    url: 'https://vyuhon.com/about',
+  },
+  twitter: {
+    title: 'About Vyuhon | AI-First Business Transformation Partner',
+    description: 'Vyuhon was founded on the belief that strategy without execution creates no impact, and software without adoption creates no value.',
+  },
 };
 
 const STATS = [
@@ -26,6 +40,13 @@ const VALUES = [
 export default function AboutPage() {
   return (
     <>
+      <JsonLd data={{
+        "@context": "https://schema.org",
+        "@type": "AboutPage",
+        "mainEntity": {
+          "@id": "https://vyuhon.com/#organization"
+        }
+      }} />
       <section className="page-hero">
         <div className="hero-wash" aria-hidden="true"></div>
         <div className="container page-hero-inner">

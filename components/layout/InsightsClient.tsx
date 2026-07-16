@@ -34,7 +34,7 @@ export default function InsightsClient({ insights }: { insights: Insight[] }) {
   return (
     <>
       {/* ── Featured Article ─────────────────────────────────────── */}
-      <Link href={`/insights/${featured.slug}`} className="insights-featured reveal">
+      <Link href={`/insights/${featured.slug}`} className="insights-featured reveal" aria-label={`Read featured insight: ${featured.title}`}>
         <div className="insights-featured-visual">
           <InsightVisual slug={featured.slug} catClass={featured.catClass} />
         </div>
@@ -63,6 +63,7 @@ export default function InsightsClient({ insights }: { insights: Insight[] }) {
             key={ins.slug}
             href={`/insights/${ins.slug}`}
             className="insight-card-v2"
+            aria-label={`Read insight: ${ins.title}`}
           >
             {/* Visual */}
             <div className="insight-card-visual">

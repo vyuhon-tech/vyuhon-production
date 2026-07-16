@@ -3,8 +3,20 @@ import Link from 'next/link';
 import CTABanner from '@/components/ui/CTABanner';
 
 export const metadata: Metadata = {
-  title: 'AI Platform | Vyuhon',
+  title: 'Enterprise AI Implementation Platform | Vyuhon',
   description: 'The complete AI solution — infrastructure, deployment, and everything in between. Built to transform organisations from first proof-of-concept to full-scale operation.',
+  alternates: {
+    canonical: 'https://vyuhon.com/ai-platform',
+  },
+  openGraph: {
+    title: 'Enterprise AI Implementation Platform | Vyuhon',
+    description: 'The complete AI solution — infrastructure, deployment, and everything in between. Built to transform organisations from first proof-of-concept to full-scale operation.',
+    url: 'https://vyuhon.com/ai-platform',
+  },
+  twitter: {
+    title: 'Enterprise AI Implementation Platform | Vyuhon',
+    description: 'The complete AI solution — infrastructure, deployment, and everything in between. Built to transform organisations from first proof-of-concept to full-scale operation.',
+  },
 };
 
 const FEATURES = [
