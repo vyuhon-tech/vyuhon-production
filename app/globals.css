@@ -66,7 +66,7 @@
   --night-line: rgba(255,255,255,0.10);
 
   /* type */
-  --serif: 'Season Mix', 'Source Serif 4', Georgia, 'Times New Roman', serif;
+  --serif: 'Plus Jakarta Sans', sans-serif;
   --sans:  'Matter', 'Inter', -apple-system, 'Segoe UI', sans-serif;
 
   /* radii */
@@ -301,7 +301,12 @@ button { font-family: inherit; }
 
 .hero {
   position: relative;
-  padding: 188px 0 104px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 120px 0 104px;
   overflow: hidden;
 }
 .hero-wash {
